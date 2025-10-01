@@ -1,0 +1,97 @@
+html {
+    background: linear-gradient(to bottom right, #FFF0DD, #73C8D2);
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    font-family: "Alan Sans", sans-serif;
+}
+.container {
+    width: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+}
+.row {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+}
+
+form {
+    background-color: white;
+    border-radius: 25px;
+    padding: 16px;
+    width: 20%;
+    height: 20vmax;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    justify-content: space-evenly;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+legend {
+    width: 100%;
+    text-align: center;
+    font-weight: bolder;
+    font-size: 1.3rem;
+}
+
+
+.form-group {
+    text-align: left;
+}
+.form-group input {
+    height: 2vmax;
+}
+
+#login-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 16px;
+}
+
+.btn-success {
+    border: none;
+    background-color: none;
+    color: darkcyan;
+    font-weight: bold;
+}
+
+.btn-primary {
+    width: 55%;
+    height: 2.4vmax;
+    background-color: darkcyan;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 25px;
+    box-shadow: 0 6px 0 black; 
+}
+
+a {
+    text-decoration: none;
+}
+
+.navbar {
+    display: none;
+}

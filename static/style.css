@@ -62,6 +62,10 @@ legend {
     height: 2vmax;
 }
 
+.form-control {
+    width: 19vmax;
+}
+
 #login-buttons {
     display: flex;
     flex-direction: column;
@@ -72,9 +76,21 @@ legend {
 
 .btn-success {
     border: none;
-    background-color: none;
+    background-color: white;
     color: darkcyan;
     font-weight: bold;
+}
+.btn-success:hover {
+    /* text-shadow: 0 2 1px black; */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+
+    cursor: pointer;
+    transform: scale(1.1)
+}
+.btn-success:active {
+    transform: scale(1);
+    color: #294D55;
+
 }
 
 .btn-primary {
@@ -86,6 +102,20 @@ legend {
     border: none;
     border-radius: 25px;
     box-shadow: 0 6px 0 black; 
+    transition: 0.2s;
+}
+
+.btn-primary:hover { 
+    transition: 0.2s;
+    /* transform: translateY(-2px); */
+    background-color: #294D55;
+    cursor:pointer; 
+}
+.btn-primary:active {
+    box-shadow:none;
+    transition: 0.2s;
+    transform: translateY(8px)
+
 }
 
 a {
@@ -94,4 +124,18 @@ a {
 
 .navbar {
     display: none;
+}
+
+@media screen and (max-width: 700px) {
+    form {
+        width: 40%;
+        height: 40vmax;
+    }
+    .form-group input {
+        height: 3vmax;
+    }
+
+    .form-control {
+        width: 22vmax;
+    }
 }

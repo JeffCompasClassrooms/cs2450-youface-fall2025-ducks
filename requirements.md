@@ -39,7 +39,8 @@ Features:
 	name, age, hobbies, interest, and pictures.
 
 - Database and Algortihm:
-	System will take this information and compare profiles with the goal of matching people based on similar traits. 
+	System will take this information and compare profiles with the goal of matching people based on similar traits. We will do this by employing a similarity machine learning algorithm
+
 
 - Matching feature:
 	Matching can only happen when you've logged into your account. Unlike other apps, our matching will be if you swipe goose.

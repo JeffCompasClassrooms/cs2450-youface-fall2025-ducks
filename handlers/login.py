@@ -41,7 +41,7 @@ def login():
 
     submit = flask.request.form.get('type')
     if submit == 'Sign Up':
-        if users.new_user(db, username, password) is None:
+        if users.new_user(db, username, password) is None and username and password:
             resp.set_cookie('username', '', expires=0)
             resp.set_cookie('password', '', expires=0)
             flask.flash('Username {} already taken!'.format(username), 'danger')

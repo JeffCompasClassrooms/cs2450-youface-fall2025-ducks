@@ -40,7 +40,7 @@ def login():
     resp.set_cookie('password', password)
 
     submit = flask.request.form.get('type')
-    if submit == 'Create':
+    if submit == 'Sign Up':
         if users.new_user(db, username, password) is None:
             resp.set_cookie('username', '', expires=0)
             resp.set_cookie('password', '', expires=0)

@@ -1,7 +1,9 @@
 html {
     background: linear-gradient(to bottom right, #FFF0DD, #73C8D2);
-    background-repeat: no-repeat;
     height: 100vh;
+    background-attachment: fixed; /* keeps it in place as you scroll */
+    background-repeat: no-repeat;
+    background-size: cover; 
 }
 
 body {
@@ -95,6 +97,7 @@ legend {
 
 .btn-primary {
     width: 55%;
+    min-width: 100px;
     height: 2.4vmax;
     background-color: darkcyan;
     color: white;

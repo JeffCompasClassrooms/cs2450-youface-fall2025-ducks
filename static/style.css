@@ -48,6 +48,16 @@ form {
     justify-content: space-evenly;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
+#signup_page {
+    width: 30%;
+    height: 35vmax;
+}
+
+select {
+    width: 100px;
+    height: 30px;
+    border: 2px solid black;
+}
 
 legend {
     width: 100%;

@@ -2,19 +2,29 @@
 
 {% block content %}
 <div class="row">
-      <form method="post" action="/login">
-          <legend>Create Your Free Acount</legend>
+      <form id="signup_page" method="post" action="/signup">
+          <legend>Create Your Free Account</legend>
           <div class="form-group">
-            <label for="username">Username</label> <br>
-            <input type="text" class="form-control" name="username">
+            <label for="username">GENDER</label> <br>
+            <select>
+              <option>Male</option>
+              <option>Female</option>
+            </select>
           </div>
           <div class="form-group">
-            <label for="password">Password</label> <br>
+            <label for="password">INTERESTS</label> <br>
             <input type="password" class="form-control" name="password">
           </div>
+          <div class="form-group">
+            <label for="password">PROMPT #1</label> <br>
+            <select>
+              <option>Would you rather fight 1 chicken sized chicken, or 5 chickens</option>
+              <option>My red flags are: </option>
+            </select> <br>
+            <textarea></textarea>
+          </div>
           <div class="form-group" id="login-buttons">
-            <input class="btn btn-primary" type="submit" name="type" value="LOGIN">
-            <input class="btn btn-success" type="submit" name="type" value="Sign Up">
+            <input class="btn btn-primary" type="submit" name="type" value="CREATE ACCOUNT">
           </div>
       </form>
 </div>

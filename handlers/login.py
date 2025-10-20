@@ -45,8 +45,10 @@ def login():
             resp.set_cookie('username', '', expires=0)
             resp.set_cookie('password', '', expires=0)
             flask.flash('Username {} already taken!'.format(username), 'danger')
-            return flask.redirect(flask.url_for('login.loginscreen'))
+            return flask.redirect(flask.url_for('login.Loginscreen'))
+
         flask.flash('User {} created successfully!'.format(username), 'success')
+        return flask.redirect(flask.url_for('login.signup'))
     elif submit == 'Delete':
         if users.delete_user(db, username, password):
             resp.set_cookie('username', '', expires=0)
@@ -64,6 +66,10 @@ def logout():
     resp.set_cookie('username', '', expires=0)
     resp.set_cookie('password', '', expires=0)
     return resp
+
+@blueprint.route('/signup')
+def signup():
+    return flask.render_template('signup.html')
 
 @blueprint.route('/')
 def index():

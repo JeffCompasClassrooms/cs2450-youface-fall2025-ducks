@@ -4,6 +4,7 @@
 <div class="row">
       <form id="signup_page" method="post" action="/signup">
           <legend>Create Your Free Account</legend>
+
           <div class="form-group">
             <label for="username">GENDER</label> <br>
             <select>
@@ -11,18 +12,49 @@
               <option>Female</option>
             </select>
           </div>
+
           <div class="form-group">
             <label for="password">INTERESTS</label> <br>
-            <input type="password" class="form-control" name="password">
+            <fieldset>
+              {% for i in interest_list %}
+                <div class="checkbox">
+                  <input type="checkbox" style="margin-top: -2px" name="interests" id="{{ i }}" value="{{ i }}">
+                  <label for="{{ i }}">{{ i }}</label><br>
+                </div>
+              {% endfor %}
+            </fieldset>
           </div>
+
           <div class="form-group">
             <label for="password">PROMPT #1</label> <br>
-            <select>
-              <option>Would you rather fight 1 chicken sized chicken, or 5 chickens</option>
-              <option>My red flags are: </option>
+            <select name="signup">
+              {% for q in question_list %}
+                <option>{{ q }}</option>
+              {% endfor %}
             </select> <br>
             <textarea></textarea>
           </div>
+
+          <div class="form-group">
+            <label for="password">PROMPT #2</label> <br>
+            <select name="signup">
+              {% for q in question_list %}
+                <option>{{ q }}</option>
+              {% endfor %}
+            </select> <br>
+            <textarea></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="password">PROMPT #3</label> <br>
+            <select name="signup">
+              {% for q in question_list %}
+                <option>{{ q }}</option>
+              {% endfor %}
+            </select> <br>
+            <textarea></textarea>
+          </div>
+
           <div class="form-group" id="login-buttons">
             <input class="btn btn-primary" type="submit" name="type" value="CREATE ACCOUNT">
           </div>

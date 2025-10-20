@@ -69,7 +69,17 @@ def logout():
 
 @blueprint.route('/signup')
 def signup():
-    return flask.render_template('signup.html')
+    question_list = [
+        "Would you rather fight 1 chicken sized chicken, or 5 chickens",
+        "My red flags are:",
+        "What's your go-to karaoke song?"
+    ]
+
+    interest_list = [
+        "Biking", "Basketball", "Fishing", "Soccer", "Gaming", "Movies", "Coding"
+    ]
+
+    return flask.render_template('signup.html', question_list=question_list, interest_list=interest_list)
 
 @blueprint.route('/')
 def index():

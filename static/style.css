@@ -49,14 +49,30 @@ form {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 #signup_page {
-    width: 30%;
-    height: 35vmax;
+    width: 35%;
+    height: 65vmax;
 }
 
 select {
     width: 100px;
     height: 30px;
     border: 2px solid black;
+}
+
+textarea {
+    width: 300px;
+    height: 100px;
+    resize: none;
+}
+
+fieldset {
+    border: none;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 legend {
@@ -66,6 +82,17 @@ legend {
     font-size: 1.3rem;
 }
 
+
+
+.checkbox {
+    border: 1px solid black;
+    width: auto;
+    height: 30px;
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    padding: 2px;
+}
 
 .form-group {
     text-align: left;

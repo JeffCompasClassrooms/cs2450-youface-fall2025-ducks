@@ -2,15 +2,21 @@
 
 {% block content %}
 <div class="row">
-      <form id="signup_page" method="post" action="/signup">
+      <form id="signup_page" method="post" action="/finish_signup">
           <legend>Create Your Free Account</legend>
 
           <div class="form-group">
-            <label for="username">GENDER</label> <br>
-            <select>
-              <option>Male</option>
-              <option>Female</option>
+            <label for="gender">GENDER</label> <br>
+            <select id="gender" required>
+              <option value="" disabled selected hidden>Select your gender</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
             </select>
+          </div>
+
+          <div class="form-group">
+            <label for="fname">FIRST NAME</label> <br>
+            <input id="fname" type="text" name="fname" required>
           </div>
 
           <div class="form-group">
@@ -25,35 +31,35 @@
             </fieldset>
           </div>
 
-          <div class="form-group">
-            <label for="password">PROMPT #1</label> <br>
-            <select name="signup">
-              {% for q in question_list %}
-                <option>{{ q }}</option>
-              {% endfor %}
-            </select> <br>
-            <textarea></textarea>
-          </div>
+         <div class="form-group">
+          <label for="prompt1">PROMPT #1</label> <br>
+          <select name="question1" id="question1" required>
+            {% for q in question_list %}
+              <option value="{{ q }}">{{ q }}</option>
+            {% endfor %}
+          </select> <br>
+          <textarea name="answer1" id="prompt1" maxlength="250" placeholder="Your answer (max 250 characters)" required></textarea>
+        </div>
 
-          <div class="form-group">
-            <label for="password">PROMPT #2</label> <br>
-            <select name="signup">
-              {% for q in question_list %}
-                <option>{{ q }}</option>
-              {% endfor %}
-            </select> <br>
-            <textarea></textarea>
-          </div>
+        <div class="form-group">
+          <label for="prompt2">PROMPT #2</label> <br>
+          <select name="question2" id="question2" required>
+            {% for q in question_list %}
+              <option value="{{ q }}">{{ q }}</option>
+            {% endfor %}
+          </select> <br>
+          <textarea name="answer2" id="prompt2" maxlength="250" placeholder="Your answer (max 250 characters)" required></textarea>
+        </div>
 
-          <div class="form-group">
-            <label for="password">PROMPT #3</label> <br>
-            <select name="signup">
-              {% for q in question_list %}
-                <option>{{ q }}</option>
-              {% endfor %}
-            </select> <br>
-            <textarea></textarea>
-          </div>
+        <div class="form-group">
+          <label for="prompt3">PROMPT #3</label> <br>
+          <select name="question3" id="question3" required>
+            {% for q in question_list %}
+              <option value="{{ q }}">{{ q }}</option>
+            {% endfor %}
+          </select> <br>
+          <textarea name="answer3" id="prompt3" maxlength="250" placeholder="Your answer (max 250 characters)" required></textarea>
+        </div>
 
           <div class="form-group" id="login-buttons">
             <input class="btn btn-primary" type="submit" name="type" value="CREATE ACCOUNT">

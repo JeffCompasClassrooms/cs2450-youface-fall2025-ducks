@@ -70,16 +70,55 @@ def logout():
 @blueprint.route('/signup')
 def signup():
     question_list = [
-        "Would you rather fight 1 chicken sized chicken, or 5 chickens",
-        "My red flags are:",
-        "What's your go-to karaoke song?"
+        # Light & Fun
+        "My most controversial food opinion",
+        "The most spontaneous thing I’ve ever done",
+        "The fictional world I want to live in",
+        "My go-to comfort movie or show",
+        "If we started a band, its name would be",
+        "What I would do if I won the lottery tomorrow",
+        
+        # Personality & Preferences
+        "Something small that instantly makes my day better",
+        "My love language is",
+        "I'm currently obsessed with",
+        "One hobby I've always wanted to try",
+        
+        # Deep & Emotional
+        "One lesson I've learned the hardway",
+        "My idea of a perfect relationship is",
+        "What I most value in a partner is",
+        "I feel most alive when",
+        "The last time I felt truley at peace was",
+        
+        # Flirty / Romantic
+        "My ideal first date is",
+        "The quality I find most attractive is",
+        "We're made for each other if",
+        
+        # Random & Thought-provoking
+        "If I could re-live one day of my life, it would be",
+        "If I could have dinner with any 3 people, I would choose",
+        "If my life were a movie, my theme song would be",
+        "Something I can talk about for hours",
+        "If time and money didn’t matter, I would",
     ]
 
     interest_list = [
-        "Biking", "Basketball", "Fishing", "Soccer", "Gaming", "Movies", "Coding"
+        "Biking", "Basketball", "Fishing", "Soccer", "Pickleball",
+        "Gaming", "Ninteno", "Skyrim", "Minecraft", "Movies", "Marvel", "Lord of the Rings",
+        "Coding", "Art", "Music", "Piano", "Jazz", 
+        "Widdling", "Sewing", "Cooking"
     ]
 
     return flask.render_template('signup.html', question_list=question_list, interest_list=interest_list)
+
+@blueprint.route('/finish_signup', methods=['POST'])
+def finishSignup():
+    resp = flask.make_response(flask.redirect(flask.url_for('login.index')))
+    #resp.set_cookie('username', username)
+    #resp.set_cookie('password', password)
+    return resp
 
 @blueprint.route('/')
 def index():

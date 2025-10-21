@@ -49,12 +49,14 @@ form {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 #signup_page {
-    width: 35%;
-    height: 65vmax;
+    width: 40%;
+    height: 75vmax;
+    margin-bottom: 25px;
+    padding: 35px;
 }
 
 select {
-    width: 100px;
+    width: 150px;
     height: 30px;
     border: 2px solid black;
 }
@@ -92,6 +94,10 @@ legend {
     flex-direction: row;
     gap: 5px;
     padding: 2px;
+}
+.checkbox:has(input[type='checkbox']:checked) {
+  background-color: lightblue;
+  border: 2px solid blue;
 }
 
 .form-group {
@@ -135,7 +141,8 @@ legend {
 .btn-primary {
     width: 55%;
     min-width: 100px;
-    height: 2.4vmax;
+    max-width: 250px;
+    height: 2.6vmax;
     background-color: darkcyan;
     color: white;
     font-weight: bold;

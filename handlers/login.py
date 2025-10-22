@@ -1,4 +1,5 @@
 import flask
+from flask import session
 
 from handlers import copy
 from db import posts, users, helpers
@@ -41,13 +42,15 @@ def login():
 
     submit = flask.request.form.get('type')
     if submit == 'Sign Up':
+        # store temporarily in the session
+        session['temp_username'] = username
+        session['temp_password'] = password
+        
         if users.new_user(db, username, password) is None and username and password:
-            resp.set_cookie('username', '', expires=0)
-            resp.set_cookie('password', '', expires=0)
-            flask.flash('Username {} already taken!'.format(username), 'danger')
+            flask.flash(f'Username {username} already taken!', 'danger')
             return flask.redirect(flask.url_for('login.Loginscreen'))
 
-        flask.flash('User {} created successfully!'.format(username), 'success')
+        flask.flash(f'User {username} created successfully!', 'success')
         return flask.redirect(flask.url_for('login.signup'))
     elif submit == 'Delete':
         if users.delete_user(db, username, password):
@@ -115,9 +118,33 @@ def signup():
 
 @blueprint.route('/finish_signup', methods=['POST'])
 def finishSignup():
+        # Retrieve the username and password from session
+    username = session.get('temp_username')
+    password = session.get('temp_password')
+
+    if not username or not password:
+        flask.flash("Missing login info, please try again.", "danger")
+        return flask.redirect(flask.url_for('login.index'))
+    
+    # Setting variabels
+    gender = flask.request.cookies.get('gender')
+    firstName = flask.request.cookies.get('fname')
+    quest1 = flask.request.cookies.get('question1')
+    answer1 = flask.request.cookies.get('answer1')
+    quest2 = flask.request.cookies.get('question2')
+    answer2 = flask.request.cookies.get('answer2')
+    quest3 = flask.request.cookies.get('question3')
+    answer3 = flask.request.cookies.get('answer3')
+
+    # Continue your logic
     resp = flask.make_response(flask.redirect(flask.url_for('login.index')))
-    #resp.set_cookie('username', username)
-    #resp.set_cookie('password', password)
+    resp.set_cookie('username', username)
+    resp.set_cookie('password', password)
+
+    # Clear them from session after use
+    session.pop('temp_username', None)
+    session.pop('temp_password', None)
+
     return resp
 
 @blueprint.route('/')

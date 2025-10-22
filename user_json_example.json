@@ -1,0 +1,36 @@
+{
+    "users": [
+      {
+        "user_id": 1,
+        "name": "Alex Rivera",
+        "age": 27,
+        "gender": "Male",
+        "interests": ["Hiking", "Photography", "Cooking"],
+        "bio": "Outdoor enthusiast who loves weekend trips and experimenting with new recipes.",
+        "preferred_gender": "Female",
+        "preferred_age_range": [23, 30]
+       
+      },
+      {
+        "user_id": 2,
+        "name": "Taylor Chen",
+        "age": 25,
+        "gender": "Female",
+        "interests": ["Art", "Yoga", "Travel"],
+        "bio": "Creative spirit with a passion for seeing the world and meeting new people.",
+        "preferred_gender": "Male",
+        "preferred_age_range": [24, 32]
+      },
+      {
+        "user_id": 3,
+        "name": "Jordan Lee",
+        "age": 30,
+        "gender": "Male",
+        "interests": ["Gaming", "Music Production", "Coffee"],
+        "bio": "Music producer and part-time barista who loves late-night gaming sessions.",
+        "preferred_gender": "Female",
+        "preferred_age_range": [25, 35]
+      }
+    ]
+  }
+  

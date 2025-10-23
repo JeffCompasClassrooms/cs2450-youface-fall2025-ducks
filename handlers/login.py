@@ -1,4 +1,4 @@
-import flask
+import json, os, flask, tempfile
 from flask import session
 
 from handlers import copy
@@ -118,7 +118,7 @@ def signup():
 
 @blueprint.route('/finish_signup', methods=['POST'])
 def finishSignup():
-        # Retrieve the username and password from session
+    # Retrieve the username and password from session
     username = session.get('temp_username')
     password = session.get('temp_password')
 
@@ -126,22 +126,52 @@ def finishSignup():
         flask.flash("Missing login info, please try again.", "danger")
         return flask.redirect(flask.url_for('login.index'))
     
-    # Setting variabels
-    gender = flask.request.cookies.get('gender')
-    firstName = flask.request.cookies.get('fname')
-    quest1 = flask.request.cookies.get('question1')
-    answer1 = flask.request.cookies.get('answer1')
-    quest2 = flask.request.cookies.get('question2')
-    answer2 = flask.request.cookies.get('answer2')
-    quest3 = flask.request.cookies.get('question3')
-    answer3 = flask.request.cookies.get('answer3')
+    # Get all form values (from POST)
+    firstName = flask.request.form.get('fname')
+    age = flask.request.form.get('age', type=int)
+    minAge = flask.request.form.get('minAge', type=int)
+    maxAge = flask.request.form.get('maxAge', type=int)
+    gender = flask.request.form.get('gender')
 
-    # Continue your logic
+    interests = flask.request.form.getlist('interests')  # <-- list of strings
+
+    quest1 = flask.request.form.get('question1')
+    answer1 = flask.request.form.get('answer1')
+    quest2 = flask.request.form.get('question2')
+    answer2 = flask.request.form.get('answer2')
+    quest3 = flask.request.form.get('question3')
+    answer3 = flask.request.form.get('answer3')
+
+    # Python data (to be sent to JSON file)
+    userData = {
+        "name": firstName,
+        "age": age,
+        "ageRange": [minAge, maxAge],
+        "gender": gender,
+        "interests": interests,  
+        "question1": quest1,
+        "answer1": answer1,
+        "question2": quest2,
+        "answer2": answer2,
+        "question3": quest3,
+        "answer3": answer3
+    }
+
+    # Example: store or print the user data
+    print(userData)
+
+    # ✅ Create a temporary JSON file to inspect your data
+    temp_dir = tempfile.gettempdir()
+    temp_file_path = os.path.join(temp_dir, "test_user_data.json")
+
+    with open(temp_file_path, "w") as f:
+        json.dump(userData, f, indent=4)  
+
+    # Continue your logic (redirect, database insert, etc.)
     resp = flask.make_response(flask.redirect(flask.url_for('login.index')))
     resp.set_cookie('username', username)
     resp.set_cookie('password', password)
 
-    # Clear them from session after use
     session.pop('temp_username', None)
     session.pop('temp_password', None)
 

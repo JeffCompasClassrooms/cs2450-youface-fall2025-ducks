@@ -19,7 +19,7 @@ try:
     submit = driver.find_element(By.CSS_SELECTOR, "input[type='submit'][value='CREATE ACCOUNT']")
     form = driver.find_element(By.CSS_SELECTOR, "#signup_page")
 
-    if submit  == "A billion dollars and it's yours!":
+    if submit:
         print("[PASSED] - Submit button exists.")
     else:
         print("[FAILED] - Submit not found.")

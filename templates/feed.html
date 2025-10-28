@@ -2,13 +2,41 @@
 
 {% block content %}
 
-<div class="row justify-content-md-center mb-4">
+<!-- <div class="row justify-content-md-center mb-4">
   <h1 class="">Welcome, {{username}}!</h1>
-</div>
+</div> -->
 
-<div class="row justify-content-md-center">
+<nav>
+  <div class="navItem" id="active">FEED</div>
+  <div class="navItem">MATCHES</div>
+  <div class="navItem">ACCOUNT</div>
+</nav>
 
-  <div class="col col-lg-8">
+<div class="mainContent">
+
+  <div class="feedDisplay">
+    <div class="feedContent">
+      <h1><</h1>
+      <div class="userPresentation">
+        <h1>Sydney</h1>
+        <h2>22</h2>
+        <h2>Question 1</h2>
+        <p>Really interesting thought to that question</p>
+      </div>
+      <h1>></h1>
+    </div>
+
+    <div class="duckgooseControls">
+      <h3>Duck</h3>
+      <h3>Goose</h3>
+    </div>
+  </div>
+
+  <form method="post" action="/logout">
+    <button type="submit" class="form-control btn btn-primary" name="logout">LOG OUT</button>
+  </form>
+
+  <!-- <div class="col col-lg-8">
     <div class="card bg-light mb-3">
       <div class="card-body">
         <h3 class="card-title">New Post</h3>
@@ -19,9 +47,9 @@
           <button type="submit" class="btn btn-primary" name="post-submit">Submit</button>
         </form>
       </div>
-    </div>
+    </div> -->
 
-    <h2 class="">My Feed</h2>
+    <!-- <h2 class="">My Feed</h2>
     {% for post in posts %}
     <div class="card bg-light">
       <div class="card-body">
@@ -31,9 +59,9 @@
       </div>
     </div>
     {% endfor %}
-  </div>
+  </div> -->
 
-  <div class="col col-lg-3">
+  <!-- <div class="col col-lg-3">
     <div class="card bg-light mb-3">
       <div class="card-body">
         <h3 class="card-title">Add Friend</h3>
@@ -61,10 +89,7 @@
           </p>
         {% endif %}
       </div>
-    </div>
+    </div> -->
 
-    <form method="post" action="/logout">
-      <button type="submit" class="form-control btn btn-primary" name="logout">LOG OUT</button>
-    </form>
   </div>
 {% endblock %}

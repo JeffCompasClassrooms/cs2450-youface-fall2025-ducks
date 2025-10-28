@@ -84,7 +84,51 @@ legend {
     font-size: 1.3rem;
 }
 
+nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 40%;
+}
 
+
+/* CUSTOM */
+
+.feedDisplay {
+    background-color: white;
+    border-radius: 25px;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    padding: 15px;
+}
+
+.feedContent {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 400px;
+}
+
+.duckgooseControls {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 15px;
+}
+
+.navItem {
+    font-size: 24px;
+    width: 25%;
+    border-radius: 25px;
+    padding: 10px;
+}
+#active {
+    background-color: #FFF0DD;
+}
 
 .checkbox {
     border: 1px solid black;
@@ -136,6 +180,13 @@ legend {
     transform: scale(1);
     color: #294D55;
 
+}
+
+.mainContent {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
 }
 
 .btn-primary {

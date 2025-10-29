@@ -118,6 +118,8 @@ def signup():
 
 @blueprint.route('/finish_signup', methods=['POST'])
 def finishSignup():
+    db = helpers.load_db()
+
     # Retrieve the username and password from session
     username = session.get('temp_username')
     password = session.get('temp_password')
@@ -157,15 +159,7 @@ def finishSignup():
         "answer3": answer3
     }
 
-    # Example: store or print the user data
-    print(userData)
-
-    # ✅ Create a temporary JSON file to inspect your data
-    temp_dir = tempfile.gettempdir()
-    temp_file_path = os.path.join(temp_dir, "test_user_data.json")
-
-    with open(temp_file_path, "w") as f:
-        json.dump(userData, f, indent=4)  
+    users.create_user_data(db, userData)
 
     # Continue your logic (redirect, database insert, etc.)
     resp = flask.make_response(flask.redirect(flask.url_for('login.index')))
@@ -176,6 +170,60 @@ def finishSignup():
     session.pop('temp_password', None)
 
     return resp
+
+@blueprint.route('/matches')
+def matches():
+    """Serves the main feed page for the user."""
+    db = helpers.load_db()
+
+    # make sure the user is logged in
+    username = flask.request.cookies.get('username')
+    password = flask.request.cookies.get('password')
+    if username is None and password is None:
+        return flask.redirect(flask.url_for('login.loginscreen'))
+    user = users.get_user(db, username, password)
+    if not user:
+        flask.flash('Invalid credentials. Please try again.', 'danger')
+        return flask.redirect(flask.url_for('login.loginscreen'))
+
+    # get the info for the user's feed
+    friends = users.get_user_friends(db, user)
+    all_posts = []
+    for friend in friends + [user]:
+        all_posts += posts.get_posts(db, friend)
+    # sort posts
+    sorted_posts = sorted(all_posts, key=lambda post: post['time'], reverse=True)
+
+    return flask.render_template('matches.html', title=copy.title,
+            subtitle=copy.subtitle, user=user, username=username,
+            friends=friends, posts=sorted_posts)
+
+@blueprint.route('/account')
+def account():
+    """Serves the main feed page for the user."""
+    db = helpers.load_db()
+
+    # make sure the user is logged in
+    username = flask.request.cookies.get('username')
+    password = flask.request.cookies.get('password')
+    if username is None and password is None:
+        return flask.redirect(flask.url_for('login.loginscreen'))
+    user = users.get_user(db, username, password)
+    if not user:
+        flask.flash('Invalid credentials. Please try again.', 'danger')
+        return flask.redirect(flask.url_for('login.loginscreen'))
+
+    # get the info for the user's feed
+    friends = users.get_user_friends(db, user)
+    all_posts = []
+    for friend in friends + [user]:
+        all_posts += posts.get_posts(db, friend)
+    # sort posts
+    sorted_posts = sorted(all_posts, key=lambda post: post['time'], reverse=True)
+
+    return flask.render_template('account.html', title=copy.title,
+            subtitle=copy.subtitle, user=user, username=username,
+            friends=friends, posts=sorted_posts)
 
 @blueprint.route('/')
 def index():

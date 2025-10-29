@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- <div class="row justify-content-md-center mb-4">
+  
+</div> -->
+
+<nav>
+  <div class="navItem" onclick="goTo('/')">FEED</div>
+  <div class="navItem" onclick="goTo('/matches')">MATCHES</div>
+  <div class="navItem" id="active" onclick="goTo('/account')">ACCOUNT</div>
+</nav>
+
+<div class="mainContent">
+
+  <div class="accountInfo">
+    <h1 class="">Welcome, {{username}}!</h1>
+    <form action="/logout" method="post" style="box-shadow: none;">
+      <button type="submit" class="form-control btn btn-primary" name="logout">LOG OUT</button>
+    </form>
+  </div>
+
+</div>
+
+<script>
+  function goTo(route) {
+    window.location.href = route;
+  }
+</script>
+
+{% endblock %}

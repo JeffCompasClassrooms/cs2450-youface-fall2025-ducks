@@ -13,7 +13,7 @@ def new_user(db, username, password):
     user_record = {
             'username': username,
             'password': password,
-            'matches': []
+            'friends': []
             }
     return users.insert(user_record)
 

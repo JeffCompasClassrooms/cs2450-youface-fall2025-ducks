@@ -15,7 +15,36 @@
 <div class="mainContent">
 
   <div class="accountInfo">
-    <h1 class="">Welcome, {{username}}!</h1>
+    <h1 class="">User Info</h1>
+    <div class="accountContainer">
+      <div class="leftBlock">
+        <h2>{{ user.data.name }}</h2>
+        <br>
+        <p>Age: {{ user.data.age }}</p>
+        <p>{{ user.data.gender }}</p>
+        <div class="line"> <p>Age range: </p> <h4>{{ user.data.ageRange[0] }}</h4> <p> to </p> <h4>{{ user.data.ageRange[1]}}</h4> </div>
+        <h2>Interest & Hobbies</h2>
+        <div class="interestHolder">
+              {% for i in user.data.interests %}
+                <div class="interestBox">
+                  <label for="{{ i }}">{{ i }}</label><br>
+                </div>
+              {% endfor %}
+        </div>
+      </div>
+      <div class="rightBlock">
+        <h3>{{ user.data.question1 }}</h3>
+        <p>{{ user.data.answer1 }}</p>
+        <br>
+        <h3>{{ user.data.question2 }}</h3>
+        <p>{{ user.data.answer2 }}</p>
+        <br>
+        <h3>{{ user.data.question3 }}</h3>
+        <p>{{ user.data.answer3 }}</p>
+        <br>
+      </div>
+    </div>
+
     <form action="/logout" method="post" style="box-shadow: none;">
       <button type="submit" class="form-control btn btn-primary" name="logout">LOG OUT</button>
     </form>

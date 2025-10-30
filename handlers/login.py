@@ -159,7 +159,7 @@ def finishSignup():
         "answer3": answer3
     }
 
-    users.create_user_data(db, userData)
+    users.create_user_data(db, userData, username)
 
     # Continue your logic (redirect, database insert, etc.)
     resp = flask.make_response(flask.redirect(flask.url_for('login.index')))
@@ -214,6 +214,7 @@ def account():
         return flask.redirect(flask.url_for('login.loginscreen'))
 
     # get the info for the user's feed
+    data = users.get_user_data(db, user)
     friends = users.get_user_friends(db, user)
     all_posts = []
     for friend in friends + [user]:
@@ -223,7 +224,7 @@ def account():
 
     return flask.render_template('account.html', title=copy.title,
             subtitle=copy.subtitle, user=user, username=username,
-            friends=friends, posts=sorted_posts)
+            friends=friends, data=data)
 
 @blueprint.route('/')
 def index():

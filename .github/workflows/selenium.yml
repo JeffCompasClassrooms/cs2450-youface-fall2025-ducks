@@ -41,5 +41,5 @@ jobs:
           SELENIUM_REMOTE_URL: http://localhost:4444/wd/hub
         run: |
           python selenium_example.py
-          python test_base.py
+          python tests/test_base.py
           python dominic_tests.py

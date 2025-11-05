@@ -1,10 +1,5 @@
 {% extends "base.html" %}
-
 {% block content %}
-
-<!-- <div class="row justify-content-md-center mb-4">
-  <h1 class="">Welcome, {{username}}!</h1>
-</div> -->
 
 <nav>
   <div class="navItem" id="active" onclick="goTo('/')">FEED</div>
@@ -13,84 +8,81 @@
 </nav>
 
 <div class="mainContent">
-
   <div class="feedDisplay">
     <div class="feedContent">
-      <h1><</h1>
-      <div class="userPresentation">
-        <h1>Sydney</h1>
-        <h2>22</h2>
-        <h2>Question 1</h2>
-        <p>Really interesting thought to that question</p>
-      </div>
-      <h1>></h1>
+      <div class="userPresentation" id="userPresentation"></div>
     </div>
 
     <div class="duckgooseControls">
-      <h3>Duck</h3>
-      <h3>Goose</h3>
+      <button id="duckBtn" class="duckBtn">Duck</button>
+      <button id="gooseBtn" class="gooseBtn">Goose</button>
     </div>
   </div>
-  <!-- <div class="col col-lg-8">
-    <div class="card bg-light mb-3">
-      <div class="card-body">
-        <h3 class="card-title">New Post</h3>
-        <form method="post" action="/post">
-          <div class="form-group">
-            <textarea class="form-control" name="post" rows="3" placeholder="What's on your mind?"></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary" name="post-submit">Submit</button>
-        </form>
-      </div>
-    </div> -->
-
-    <!-- <h2 class="">My Feed</h2>
-    {% for post in posts %}
-    <div class="card bg-light">
-      <div class="card-body">
-        <h4 class="card-title">{{ post.user }}</h4>
-        <h6 class="card-subtitle mb-2 text-muted">{{ post.time|convert_time }}</h6>
-        <p class="card-text">{{ post.text }}</p>
-      </div>
-    </div>
-    {% endfor %}
-  </div> -->
-
-  <!-- <div class="col col-lg-3">
-    <div class="card bg-light mb-3">
-      <div class="card-body">
-        <h3 class="card-title">Add Friend</h3>
-        <form method="post" action="/addfriend">
-          <div class="form-group mb-1">
-            <input type="text" class="form-control" name="name" placeholder="username" />
-          </div>
-          <button type="submit" class="form-control btn btn-primary" name="addfriend">Submit</button>
-        </form>
-      </div>
-    </div>
-
-    <div class="card bg-light">
-      <div class="card-body">
-        <h3 class="card-title">My Friends</h3>
-        {% if friends %}
-          <ul>
-            {% for friend in friends %}
-              <li><a href="/friend/{{ friend.username }}">{{ friend.username }}</a></li>
-            {% endfor %}
-          </ul>
-        {% else %}
-          <p class="card-text">
-            Sorry, no friends!
-          </p>
-        {% endif %}
-      </div>
-    </div> -->
-
-  </div>
+</div>
 
 <script>
   function goTo(route) {
     window.location.href = route;
   }
+
+  const profiles = [
+    { name: "Sydney", age: 22, question: "Question 1", answer: "Really interesting thought to that question" },
+    { name: "Jordan", age: 24, question: "Question 2", answer: "I like long walks on the beach" },
+    { name: "Taylor", age: 21, question: "Question 3", answer: "My ideal day is reading and hiking" },
+    { name: "Riley", age: 23, question: "Question 4", answer: "I’d travel anywhere with mountains" },
+  ];
+
+  let currentIndex = 0;
+  const matches = [];
+
+  function renderProfile() {
+    const p = profiles[currentIndex];
+    const container = document.getElementById("userPresentation");
+
+    if (!p) {
+      container.innerHTML = `
+        <h2>No more profiles!</h2>
+        <p>You’ve reached the end of the feed.</p>
+      `;
+      document.getElementById("duckBtn").disabled = true;
+      document.getElementById("gooseBtn").disabled = true;
+      console.log("Matches so far:", matches);
+      return;
+    }
+
+    container.innerHTML = `
+      <h1>${p.name}</h1>
+      <h2>${p.age}</h2>
+      <h2>${p.question}</h2>
+      <p>${p.answer}</p>
+    `;
+  }
+
+  document.getElementById("duckBtn").addEventListener("click", () => {
+    currentIndex++;
+    renderProfile();
+  });
+
+  document.getElementById("gooseBtn").addEventListener("click", async () => {
+    const p = profiles[currentIndex];
+    if (p) {
+      matches.push(p);
+      console.log("You goosed:", p.name);
+      try {
+        await fetch("/goose", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(p),
+        });
+      } catch (err) {
+        console.error("Error saving match:", err);
+      }
+    }
+
+    currentIndex++;
+    renderProfile();
+  });
+
+  renderProfile();
 </script>
 {% endblock %}

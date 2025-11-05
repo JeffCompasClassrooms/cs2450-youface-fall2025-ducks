@@ -40,6 +40,6 @@ jobs:
         env:
           SELENIUM_REMOTE_URL: http://localhost:4444/wd/hub
         run: |
-          python tests/test_base.py
+          python obed.tests.py
           python dominic_tests.py
           python brandon.test.py

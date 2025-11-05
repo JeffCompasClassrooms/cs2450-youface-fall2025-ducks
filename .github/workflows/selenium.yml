@@ -42,3 +42,4 @@ jobs:
         run: |
           python tests/test_base.py
           python dominic_tests.py
+          python brandon.test.py

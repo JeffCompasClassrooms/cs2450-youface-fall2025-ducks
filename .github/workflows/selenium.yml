@@ -33,8 +33,13 @@ jobs:
 
       - name: Start Flask app in background
         run: |
-          nohup python youface.py > flask.log 2>&1 &
-          sleep 5
+          # 1. Start the 'duckduckgoose.py' Flask app
+          # 2. Bind to 0.0.0.0 (required for CI accessibility) and port 5005 (matches your test scripts)
+          nohup python duckduckgoose.py --host 0.0.0.0 --port 5005 > flask.log 2>&1 &
+          
+          # 3. Active wait: Checks the app is ready on port 5005 before proceeding
+          echo "Waiting for Flask app to start on http://127.0.0.1:5005..."
+          timeout 60 bash -c 'until curl -s http://127.0.0.1:5005; do sleep 1; done'
 
       - name: Run Selenium tests
         env:

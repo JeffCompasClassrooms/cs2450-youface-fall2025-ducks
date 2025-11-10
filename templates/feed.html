@@ -20,17 +20,31 @@
   </div>
 </div>
 
+<!-- Convert user data to javascript -->
+<!-- <script id="user-data" type="application/json">
+  {{ userData | tojson | safe }}
+</script> -->
+
 <script>
   function goTo(route) {
     window.location.href = route;
   }
 
-  const profiles = [
-    { name: "Sydney", age: 22, question: "Question 1", answer: "Really interesting thought to that question" },
-    { name: "Jordan", age: 24, question: "Question 2", answer: "I like long walks on the beach" },
-    { name: "Taylor", age: 21, question: "Question 3", answer: "My ideal day is reading and hiking" },
-    { name: "Riley", age: 23, question: "Question 4", answer: "I’d travel anywhere with mountains" },
-  ];
+  function getProfiles() {
+    // const data = JSON.parse(document.getElementById('user-data').textContent);
+    // console.log(data);
+    // console.log("Name:", data.users["1"].data.name);
+
+    let profs = [
+        { name: "Sydney", age: 22, question: "Question 1", answer: "Really interesting thought to that question" },
+        { name: "Jordan", age: 24, question: "Question 2", answer: "I like long walks on the beach" },
+        { name: "Taylor", age: 21, question: "Question 3", answer: "My ideal day is reading and hiking" },
+        { name: "Riley", age: 23, question: "Question 4", answer: "I’d travel anywhere with mountains" },
+      ];
+    return profs;
+  }
+
+  const profiles = getProfiles();
 
   let currentIndex = 0;
   const matches = [];

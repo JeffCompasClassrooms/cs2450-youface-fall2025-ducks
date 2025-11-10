@@ -30,6 +30,9 @@ def new_user(db, username, password):
             'username': username,
             'password': password,
             'friends': [],
+            'matches': [],
+            'ducks': [],
+            "geese": [],
             'data' : None
             }
     return users.insert(user_record)

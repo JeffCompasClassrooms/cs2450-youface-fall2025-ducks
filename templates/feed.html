@@ -18,12 +18,8 @@
       <button id="gooseBtn" class="gooseBtn">Goose</button>
     </div>
   </div>
+  {{userData}}
 </div>
-
-<!-- Convert user data to javascript -->
-<!-- <script id="user-data" type="application/json">
-  {{ userData | tojson | safe }}
-</script> -->
 
 <script>
   function goTo(route) {
@@ -31,10 +27,6 @@
   }
 
   function getProfiles() {
-    // const data = JSON.parse(document.getElementById('user-data').textContent);
-    // console.log(data);
-    // console.log("Name:", data.users["1"].data.name);
-
     let profs = [
         { name: "Sydney", age: 22, question: "Question 1", answer: "Really interesting thought to that question" },
         { name: "Jordan", age: 24, question: "Question 2", answer: "I like long walks on the beach" },

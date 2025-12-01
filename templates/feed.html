@@ -1,6 +1,76 @@
 {% extends "base.html" %}
 {% block content %}
 
+<style>
+  .mainContent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 40px;
+  }
+
+  .feedDisplay {
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .userPresentation {
+    text-align: center;
+    padding: 40px;
+    background: white;
+    border-radius: 25px;
+    width: 100%;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  }
+
+  .userPresentation h1 {
+    margin-bottom: 10px;
+  }
+
+  .duckgooseControls {
+  display: flex;
+  gap: 40px;
+  margin-top: 40px;
+  justify-content: center;
+}
+
+/* Shared styles for both buttons */
+.duckBtn, .gooseBtn {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  border: none;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+
+  /* Text styling */
+  font-size: 22px;
+  font-weight: 700;
+  color: white;
+  text-shadow: 0px 0px 8px black;
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 12px;
+}
+
+/* Actual images */
+.duckBtn {
+  background-image: url('/static/duck.ani.png');
+}
+
+.gooseBtn {
+  background-image: url('/static/goose.ani.png');
+}
+
+</style>
+
 <nav>
   <div class="navItem" id="active" onclick="goTo('/')">FEED</div>
   <div class="navItem" onclick="goTo('/matches')">MATCHES</div>
@@ -18,7 +88,6 @@
       <button id="gooseBtn" class="gooseBtn">Goose</button>
     </div>
   </div>
-  {{userData}}
 </div>
 
 <script>
@@ -27,17 +96,15 @@
   }
 
   function getProfiles() {
-    let profs = [
-        { name: "Sydney", age: 22, question: "Question 1", answer: "Really interesting thought to that question" },
-        { name: "Jordan", age: 24, question: "Question 2", answer: "I like long walks on the beach" },
-        { name: "Taylor", age: 21, question: "Question 3", answer: "My ideal day is reading and hiking" },
-        { name: "Riley", age: 23, question: "Question 4", answer: "I’d travel anywhere with mountains" },
-      ];
-    return profs;
+    return [
+      { name: "Sydney", age: 22, question: "Question 1", answer: "Really interesting thought to that question" },
+      { name: "Jordan", age: 24, question: "Question 2", answer: "I like long walks on the beach" },
+      { name: "Taylor", age: 21, question: "Question 3", answer: "My ideal day is reading and hiking" },
+      { name: "Riley", age: 23, question: "Question 4", answer: "I’d travel anywhere with mountains" }
+    ];
   }
 
   const profiles = getProfiles();
-
   let currentIndex = 0;
   const matches = [];
 
@@ -52,7 +119,6 @@
       `;
       document.getElementById("duckBtn").disabled = true;
       document.getElementById("gooseBtn").disabled = true;
-      console.log("Matches so far:", matches);
       return;
     }
 
@@ -73,7 +139,6 @@
     const p = profiles[currentIndex];
     if (p) {
       matches.push(p);
-      console.log("You goosed:", p.name);
       try {
         await fetch("/goose", {
           method: "POST",
@@ -84,11 +149,11 @@
         console.error("Error saving match:", err);
       }
     }
-
     currentIndex++;
     renderProfile();
   });
 
   renderProfile();
 </script>
+
 {% endblock %}
